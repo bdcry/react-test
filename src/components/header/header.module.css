@@ -1,0 +1,66 @@
+.appHeader {
+  width: 100%;
+  background-color: var(--color-gray);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.label {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.value {
+  color: var(--text-color-secondary);
+  font-weight: 600;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stat .value {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.02em;
+}
+
+@media screen and (max-width: 480px) {
+  .section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stats {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    gap: 30px;
+  }
+}
