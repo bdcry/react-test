@@ -1,73 +1,121 @@
-# React + TypeScript + Vite
+# React Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Компактное SPA на React с двумя страницами, интерактивным меню и общим состоянием приложения.
 
-Currently, two official plugins are available:
+## Демо
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- GitHub Pages: [bdcry.github.io/react-test/#/](https://bdcry.github.io/react-test/#/)
+- Версия на Angular: [bdcry.github.io/angular-selectel-test/#/](https://bdcry.github.io/angular-selectel-test/#/)
+- Исходный код: [github.com/bdcry/react-test](https://github.com/bdcry/react-test)
 
-## React Compiler
+## О проекте
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Проект повторяет тестовое задание с Angular-версии, но реализован на React + TypeScript + Vite.
 
-## Expanding the ESLint configuration
+В приложении есть:
+- главная страница с приветствием и навигацией
+- страница меню со статическим набором пунктов
+- выбор элементов через `checkbox`
+- подсчет количества выбранных пунктов
+- подсчет общего значения выбранных позиций
+- отображение текущего раздела и статистики в заголовке
+- hash routing для корректной работы на GitHub Pages
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Технологии
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| Технология | Назначение |
+| --- | --- |
+| React 19 | UI и композиция компонентов |
+| TypeScript | типизация и контроль данных |
+| Vite | dev server и production build |
+| React Router | маршрутизация между страницами |
+| CSS Modules | локальная стилизация компонентов |
+| ESLint | базовая проверка качества кода |
+| gh-pages | публикация статической сборки |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Требования
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js `20.19+` или `22.12+`
+- npm `10+`
+
+## Структура проекта
+
+```text
+src/
+  components/
+    header/
+    sidebar/
+  data/
+  pages/
+    home-page/
+    menu-page/
+  routes/
+  types/
+  utils/hooks/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Ключевые части:
+- `src/app.tsx` — корневые маршруты приложения
+- `src/routes/main-layout.tsx` — общий layout с header и sidebar
+- `src/utils/hooks/use-menu.ts` — состояние меню и вычисляемые значения
+- `src/data/menu-items.ts` — статичные данные пунктов меню
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Запуск локально
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Установка зависимостей:
+
+```bash
+npm install
 ```
+
+Запуск dev-сервера:
+
+```bash
+npm run dev
+```
+
+Локальный адрес по умолчанию:
+
+```text
+http://localhost:5173/
+```
+
+## Скрипты
+
+```bash
+npm run dev
+npm run build
+npm run preview
+npm run lint
+npm run deploy
+```
+
+## Сборка и деплой
+
+Production build:
+
+```bash
+npm run build
+```
+
+Публикация на GitHub Pages:
+
+```bash
+npm run deploy
+```
+
+Проект использует `HashRouter`, поэтому маршруты работают на GitHub Pages без серверной настройки rewrite.
+
+## Особенности реализации
+
+- данные меню хранятся в статичном массиве без backend
+- состояние и вычисления вынесены в кастомный хук `use-menu`
+- header показывает текущий раздел и статистику только для страницы меню
+- стили изолированы через `*.module.css`
+
+## Маршруты
+
+| Маршрут | Назначение |
+| --- | --- |
+| `/#/` | главная страница |
+| `/#/menu` | страница меню |
